@@ -9,10 +9,10 @@ stdenv.mkDerivation rec {
   version = "0.0.1";
 
   src = fetchFromGitHub {
-    owner = "ngscopeclient";
+    owner = "hansfbaier";
     repo = "scopehal-apps";
-    rev = "cefd7df5e639f26f07576b78165acb0608eb5e2d";
-    hash = "sha256-r07Ko9YTR5sd4Yuz8daoQU2BS3pUCkmGDVS5KzTU/bA=";
+    rev = "8729420521eb35df36eed2cdba99e2a771fc0809";
+    hash = "sha256-2cn9hXv+Gn6uW5z5R3dX0ZTWOv0VHh/25hHY0I9tsqc=";
     fetchSubmodules = true;
   };
 
