@@ -45,7 +45,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Advanced test and measurement instrument remote control and analysis suite";
     homepage = "https://www.ngscopeclient.org/";
-    license = licenses.bsd2;
+    license = licenses.bsd3;
     platforms = platforms.all;
   };
 }
