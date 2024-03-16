@@ -22,9 +22,12 @@
         let
           pkgs = nixpkgsFor.${system};
           inherit (pkgs) callPackage;
+          outPathOf = x: if (builtins.hasAttr "lib" x) 
+                         then x.lib.outPath
+                         else x.out.outPath;
           libAppend = x: ''
-              export LD_LIBRARY_PATH="${if (builtins.hasAttr "lib" x) then x.lib.outPath else (x.out.outPath)}/lib:$LD_LIBRARY_PATH"
-            '';
+              export LD_LIBRARY_PATH="${outPathOf x}/lib:$LD_LIBRARY_PATH"
+              '';
         in rec {
           ffts = callPackage ./nix/ffts.nix { };
           scopehal-apps = callPackage ./nix/scopehal-apps.nix { inherit ffts; };
