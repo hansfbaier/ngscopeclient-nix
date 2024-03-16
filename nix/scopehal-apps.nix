@@ -48,8 +48,13 @@ stdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-DCURRENT_GIT_VERSION=${lib.substring 0 7 src.rev}"
+    "-DCMAKE_INSTALL_PREFIX=$out"
     "-Wno-deprecated"
   ];
+
+  postInstall = ''
+    ln -s $out/share $out/bin/
+  '';
 
   meta = with lib; {
     homepage = "https://www.ngscopeclient.org/";

@@ -36,7 +36,7 @@
         let
           pkgs = nixpkgsFor.${system};
         in pkgs.mkShell {
-          buildInputs = packages.${system}.scopehal-apps.buildInputs;
+          buildInputs = [ packages.${system}.scopehal-apps ];
           shellHook = "echo Welcome to the ngscopeclient devShell!\n" + packages.${system}.libraryPaths; 
         }
       );
