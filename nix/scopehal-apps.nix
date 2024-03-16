@@ -1,6 +1,7 @@
 { stdenv, cmake, git, lib, fetchFromGitHub, pkg-config,
   libsigcxx, gtkmm3, cairomm, yaml-cpp, catch2, glfw, libtirpc, liblxi,
-  glew, 
+  glew, libllvm, libdrm, elfutils, libxcb, zstd, libxshmfence, xcbutilkeysyms,
+  systemd,
   shaderc, vulkan-headers, vulkan-loader, vulkan-tools, glslang, spirv-tools,
   ffts,
   ... }:
@@ -28,6 +29,14 @@ stdenv.mkDerivation rec {
     libtirpc
     liblxi
     glew
+    libllvm
+    libdrm
+    elfutils
+    libxcb
+    zstd
+    libxshmfence
+    xcbutilkeysyms
+    systemd
     vulkan-headers
     vulkan-loader
     vulkan-tools
@@ -43,7 +52,6 @@ stdenv.mkDerivation rec {
   ];
 
   meta = with lib; {
-    description = "Advanced test and measurement instrument remote control and analysis suite";
     homepage = "https://www.ngscopeclient.org/";
     license = licenses.bsd3;
     platforms = platforms.all;
