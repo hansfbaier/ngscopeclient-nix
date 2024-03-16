@@ -1,4 +1,4 @@
-{ stdenv, cmake, git, lib, fetchFromGitHub, pkg-config,
+{ stdenv, cmake, git, lib, fetchFromGitHub, pkg-config, breakpointHook,
   libsigcxx, gtkmm3, cairomm, yaml-cpp, catch2, glfw, libtirpc, liblxi,
   glew, libllvm, libdrm, elfutils, libxcb, zstd, libxshmfence, xcbutilkeysyms,
   systemd,
@@ -48,7 +48,6 @@ stdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-DCURRENT_GIT_VERSION=${lib.substring 0 7 src.rev}"
-    "-DCMAKE_INSTALL_PREFIX=$out"
     "-Wno-deprecated"
   ];
 

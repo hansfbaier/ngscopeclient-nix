@@ -1,4 +1,4 @@
-{ stdenv, cmake, git, lib, fetchFromGitHub, 
+{ stdenv, cmake, git, lib, fetchFromGitHub,
   ... }:
 stdenv.mkDerivation rec {
   pname = "ffts";
