@@ -1,4 +1,5 @@
 # How to use
 ```
-$ nix develop github:hansfbaier/ngscopeclient-nix
+$ nix shell github:hansfbaier/ngscopeclient-nix
+$ ngscopeclient
 ```
