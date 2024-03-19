@@ -56,6 +56,8 @@ stdenv.mkDerivation rec {
     in
       builtins.concatStringsSep ":" (map libAppend buildInputs);
 
+  # cmakeBuildType = "Debug";
+  # hardeningDisable = [ "all" ];
   cmakeFlags = [
     "-DCURRENT_GIT_VERSION=${lib.substring 0 7 src.rev}"
     "-Wno-deprecated"
