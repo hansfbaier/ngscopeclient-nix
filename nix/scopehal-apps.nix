@@ -13,8 +13,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "ngscopeclient";
     repo = "scopehal-apps";
-    rev = "cefd7df5e639f26f07576b78165acb0608eb5e2d";
-    hash = "sha256-r07Ko9YTR5sd4Yuz8daoQU2BS3pUCkmGDVS5KzTU/bA=";
+    rev = "be845c32f8484397fe54d70e513d7c962a622d7b";
+    hash = "sha256-VH2Xk1eQVqUEMLjX0C4dXPP9Fq8nVq0tEQkjwg5WyQ8=";
     fetchSubmodules = true;
   };
 
@@ -72,6 +72,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     homepage = "https://www.ngscopeclient.org/";
     license = licenses.bsd3;
-    platforms = platforms.all;
+    maintainers = with lib.maintainers; [ thoughtpolice hansfbaier ];
+    platforms = lib.platforms.linux;
   };
 }
