@@ -22,29 +22,29 @@
         let
           pkgs = nixpkgsFor.${system};
           inherit (pkgs) callPackage;
-          outPathOf = x: if (builtins.hasAttr "lib" x) 
-                         then x.lib.outPath
-                         else x.out.outPath;
-          libAppend = x: ''
-              export LD_LIBRARY_PATH="${outPathOf x}/lib:$LD_LIBRARY_PATH"
-              '';
         in rec {
           ffts = callPackage ./nix/ffts.nix { };
           scopehal-apps = callPackage ./nix/scopehal-apps.nix { inherit ffts; };
           default = scopehal-apps;
-          libraryPaths = builtins.concatStringsSep "" (map libAppend scopehal-apps.buildInputs);
       });
 
       devShell = forAllSystems (system:
         let
           pkgs = nixpkgsFor.${system};
           scopeHal = packages.${system}.scopehal-apps;
+          outPathOf = x: if (builtins.hasAttr "lib" x) 
+                         then x.lib.outPath
+                         else x.out.outPath;
+          libAppend = x: ''
+              export LD_LIBRARY_PATH="${outPathOf x}/lib:$LD_LIBRARY_PATH"
+              '';
+          libraryPaths = builtins.concatStringsSep "" (map libAppend packages.${system}.scopehal-apps.buildInputs);
         in pkgs.mkShell {
           nativeBuildInputs = scopeHal.nativeBuildInputs;
           buildInputs = scopeHal.buildInputs;
           hardeningDisable = [ "all" ];
           shellHook = "echo Welcome to the ngscopeclient devShell!\n" + 
-                      packages.${system}.libraryPaths;
+                      libraryPaths;
         }
       );
     };
